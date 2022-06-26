@@ -2,20 +2,21 @@
 
 namespace App\Models;
 
+use App\Models\OrderDetails;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ProductPrices extends Model
+class Order extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'product_id',
-        'price_type_id',
-        'amount',
-        'start_date',
-        'end_date',
+        'user_id',
+        'order_number',
+        'shipping_address',
+        'billing_address',
+        'total_amount',
     ];
 
     public function orderDetails()

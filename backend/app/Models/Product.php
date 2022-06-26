@@ -18,4 +18,29 @@ class Product extends Model
         'image',
         'is_active',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function prices()
+    {
+        return $this->hasMany(Price::class)->with('priceTypes');
+    }
+
+    public function orderDetails()
+    {
+        return $this->belongsTo(OrderDetails::class);
+    }
+
+    public function scopeOrderByIdDescending($query)
+    {
+        return $query->orderBy('id', 'DESC');
+    }
+
+    public function scopeFilterIsActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }
